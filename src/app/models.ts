@@ -46,7 +46,7 @@ interface Screenshots {
 }
 
 interface Trailer {
-    date: {
+    data: {
         max: string
     }
 }
