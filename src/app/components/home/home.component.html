@@ -1,0 +1,43 @@
+<div class="filters">
+  <mat-form-field>
+    <mat-label> Sort </mat-label>
+    <mat-select
+      panelClass="sort-select"
+      [(ngModel)]="sort"
+      (selectionChange)="selectGames(sort)"
+    >
+      <div *ngFor="let val of selectValue">
+        <mat-option [value]="val.value">{{ val.title }}</mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="games">
+  <ng-container *ngFor="let game of games">
+    <div class="game" (click)="openGameDetails(game.id)">
+      <div class="game-thumb-container">
+        <img
+          src="{{ game.background_image }}"
+          alt="thumbnail"
+          class="game-thumbnail"
+          *ngIf="game.background_image"
+        />
+        <p *ngIf="!game.background_image">No Image</p>
+      </div>
+      <div class="game-discription">
+        <p class="game-name">{{ game.name }}</p>
+        <div classs="game-platforms">
+          <img
+            *ngFor="let gamePlatform of game.parent_platforms"
+            src="../../../assets/images/platforms/{{
+              gamePlatform.platform.slug
+            }}.svg"
+            class="game-platform"
+            alt="{{ gamePlatform.platform.name }}"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
